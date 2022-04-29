@@ -1,2 +1,76 @@
 .app-slider {
+  border: 3px dashed black;
+  width: 100%;
+
+  .slider {
+    border: 2px solid green;
+    position: relative;
+    width: 600px;
+    margin-bottom: 60px;
+    overflow: hidden;
+
+    .slider-track {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+      transition: transform 0.5s ease;
+
+      .slide {
+        width: 500px;
+        height: 400px;
+        flex-grow: 1;
+        flex-shrink: 0;
+
+        &.blue {
+          background-color: blue;
+        }
+
+        &.red {
+          background-color: red;
+        }
+
+        &.yellow {
+          background-color: yellow;
+        }
+
+        &.orange {
+          background-color: orange;
+        }
+      }
+    }
+  }
+
+  .controls {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+
+    .btn {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid black;
+      border-radius: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #f3f3f3;
+      }
+
+      &.inactive {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+  }
 }
