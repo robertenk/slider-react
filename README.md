@@ -42,11 +42,17 @@ In order to automatically **format** the code (.js|.jsx|.css|...), it is recomme
 
 For now, ViteJS does not support ESLint 8.x (= no automatic linting when dev server is running).
 
-### Deployment
+### To Do / Improvements
 
--
+Slider:  
+[ ] Refactor component  
+[ ] Improve adaptive slideshow width  
+[ ] Enable infinite sliding  
+[ ] Add dot indicators  
+[ ] Enable navigation via dragging  
+[ ] Add autoplay option
 
-### TODO:
-
-[ ] Task 1  
-[ ] Task 2
+Project:  
+[ ] Write tests (unit & integration)  
+[ ] Configure build pipeline (GitHub Actions)  
+[ ] Add missing favicon

@@ -8,7 +8,8 @@ class Slide extends React.Component {
 
   getBackgroundImage() {
     return {
-      backgroundImage: `url(https://picsum.photos/1000)`
+      backgroundImage: `url(${this.props.src})`,
+      width: `${this.props.width}px`
     }
   }
 
@@ -23,12 +24,14 @@ class Slide extends React.Component {
 
 Slide.defaultProps = {
   title: '',
-  src: ''
+  src: '',
+  width: 0
 }
 
 Slide.propTypes = {
   title: PropTypes.string,
-  src: PropTypes.string
+  src: PropTypes.string,
+  width: PropTypes.number
 }
 
 export default Slide

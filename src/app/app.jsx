@@ -1,16 +1,26 @@
 import React from 'react'
 import Slider from './components/slider'
-
-const dummyKey = import.meta.env.VITE_DUMMY_KEY
-const items = [
-  { title: 'Eins', color: 'blue' },
-  { title: 'Zwei', color: 'red' },
-  { title: 'Drei', color: 'yellow' }
-]
+import API from './api'
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      dummyImages: []
+    }
+  }
+
+  async getDummyImages() {
+    const dummyImages = await API.getDummyImages().catch(() => {
+      console.log('An error occured.')
+    })
+
+    this.setState({ dummyImages })
+  }
+
   componentDidMount() {
-    console.log('### VITE_DUMMY_KEY', dummyKey)
+    this.getDummyImages()
   }
 
   render() {
@@ -18,7 +28,7 @@ export default class App extends React.Component {
       <div className="app-wrapper">
         <section>
           <div className="container">
-            <Slider title="My title" items={items} />
+            <Slider title="Paris 2022" items={this.state.dummyImages} />
           </div>
         </section>
       </div>
