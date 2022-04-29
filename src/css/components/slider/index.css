@@ -1,12 +1,16 @@
+@import url(./slide.css);
+
 .app-slider {
-  border: 3px dashed black;
   width: 100%;
 
+  h1 {
+    text-align: center;
+  }
+
   .slider {
-    border: 2px solid green;
+    border: 2px solid #000;
     position: relative;
-    width: 600px;
-    margin-bottom: 60px;
+    width: 100%;
     overflow: hidden;
 
     .slider-track {
@@ -15,39 +19,15 @@
       align-items: center;
       flex-wrap: nowrap;
       transition: transform 0.5s ease;
-
-      .slide {
-        width: 500px;
-        height: 400px;
-        flex-grow: 1;
-        flex-shrink: 0;
-
-        &.blue {
-          background-color: blue;
-        }
-
-        &.red {
-          background-color: red;
-        }
-
-        &.yellow {
-          background-color: yellow;
-        }
-
-        &.orange {
-          background-color: orange;
-        }
-      }
     }
   }
 
   .controls {
-    width: 600px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
 
     .btn {
       margin: 10px;
@@ -68,7 +48,7 @@
       }
 
       &.inactive {
-        opacity: 0.5;
+        opacity: 0.3;
         pointer-events: none;
       }
     }

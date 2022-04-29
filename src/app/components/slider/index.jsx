@@ -1,14 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GrNext, GrPrevious } from 'react-icons/gr'
+import Slide from './slide'
 
 class Slider extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { currentSlideIndex: 0 }
+    this.state = { currentSlideIndex: 0, sliderWidth: 0 }
+
     this.showPrev = this.showPrev.bind(this)
     this.showNext = this.showNext.bind(this)
+    this.handleResize = this.handleResize.bind(this)
+    this.sliderElem = React.createRef()
   }
 
   showPrev() {
@@ -28,8 +32,8 @@ class Slider extends React.Component {
   }
 
   getSlideTrackStyle() {
-    const trackWidth = this.props.items.length * 600
-    const offset = this.state.currentSlideIndex * 600
+    const trackWidth = this.props.items.length * this.state.sliderWidth
+    const offset = this.state.currentSlideIndex * this.state.sliderWidth
 
     return {
       width: `${trackWidth}px`,
@@ -37,21 +41,30 @@ class Slider extends React.Component {
     }
   }
 
-  componentDidMount() {}
+  handleResize() {
+    const sliderWidth = this.sliderElem.current ? this.sliderElem.current.offsetWidth : 0
 
-  componentWillUnmount() {}
+    this.setState({
+      sliderWidth
+    })
+  }
+
+  componentDidMount() {
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
 
   render() {
-    const slides = this.props.items.map((item, index) => {
-      return (
-        <div key={index} className={`slide ${item.color}`}>
-          {item.title}
-        </div>
-      )
-    })
+    const slides = this.props.items.map((item, index) => (
+      <Slide key={index} className={`slide ${item.color}`} title={item.title} />
+    ))
 
     return (
-      <div className="app-slider">
+      <div className="app-slider" ref={this.sliderElem}>
         <h1>{this.props.title}</h1>
 
         <div className="slider">
@@ -61,10 +74,18 @@ class Slider extends React.Component {
         </div>
 
         <div className="controls">
-          <div className="btn btn-prev" onClick={this.showPrev}>
+          <div
+            className={`btn btn-prev ${this.state.currentSlideIndex === 0 ? 'inactive' : ''}`}
+            onClick={this.showPrev}
+          >
             <GrPrevious />
           </div>
-          <div className="btn btn-next" onClick={this.showNext}>
+          <div
+            className={`btn btn-next ${
+              this.state.currentSlideIndex === this.props.items.length - 1 ? 'inactive' : ''
+            }`}
+            onClick={this.showNext}
+          >
             <GrNext />
           </div>
         </div>

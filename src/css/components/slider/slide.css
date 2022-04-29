@@ -1,0 +1,21 @@
+.app-slider .slider .slider-track .slide {
+  height: 50vh;
+  max-height: 500px;
+  padding: 20px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .image-title {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
