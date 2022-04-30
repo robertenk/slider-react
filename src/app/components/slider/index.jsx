@@ -62,7 +62,7 @@ class Slider extends React.Component {
     const slides = this.props.items.map((item, index) => (
       <Slide
         key={index}
-        className={`slide ${item.color}`}
+        className="slide"
         title={item.title}
         src={item.src}
         width={this.state.sliderWidth}
