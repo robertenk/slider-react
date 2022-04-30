@@ -3,7 +3,7 @@
 ### Requirements
 
 ```
-Node >= 14.19
+Node >= 14.18
 yarn >= 1.22
 ```
 
