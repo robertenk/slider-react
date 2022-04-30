@@ -11,6 +11,10 @@ export default class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getDummyImages()
+  }
+
   async getDummyImages() {
     const dummyImages = await API.getDummyImages().catch(() => {
       console.log('An error occured.')
@@ -19,16 +23,14 @@ export default class App extends React.Component {
     this.setState({ dummyImages })
   }
 
-  componentDidMount() {
-    this.getDummyImages()
-  }
-
   render() {
+    const { dummyImages } = this.state
+
     return (
       <div className="app-wrapper">
         <section>
           <div className="container">
-            <Slider title="Paris 2022" items={this.state.dummyImages} />
+            <Slider title="Paris 2022" items={dummyImages} />
           </div>
         </section>
       </div>

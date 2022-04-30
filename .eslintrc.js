@@ -16,6 +16,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-unused-vars': 'warn',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'import/extensions': 'off'
+    'import/extensions': 'off',
+    'react/destructuring-assignment': 'warn'
   }
 }

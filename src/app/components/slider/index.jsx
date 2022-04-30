@@ -15,30 +15,13 @@ class Slider extends React.Component {
     this.sliderElem = React.createRef()
   }
 
-  showPrev() {
-    if (this.state.currentSlideIndex === 0) return
-
-    this.setState({
-      currentSlideIndex: this.state.currentSlideIndex - 1
-    })
+  componentDidMount() {
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
   }
 
-  showNext() {
-    if (this.state.currentSlideIndex === this.props.items.length - 1) return
-
-    this.setState({
-      currentSlideIndex: this.state.currentSlideIndex + 1
-    })
-  }
-
-  getSlideTrackStyle() {
-    const trackWidth = this.props.items.length * this.state.sliderWidth
-    const offset = this.state.currentSlideIndex * this.state.sliderWidth
-
-    return {
-      width: `${trackWidth}px`,
-      transform: `translate3d(-${offset}px, 0px, 0px)`
-    }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   }
 
   handleResize() {
@@ -49,19 +32,39 @@ class Slider extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.handleResize()
-    window.addEventListener('resize', this.handleResize)
+  getSlideTrackStyle() {
+    const { items } = this.props
+    const { sliderWidth, currentSlideIndex } = this.state
+
+    const trackWidth = items.length * sliderWidth
+    const offset = currentSlideIndex * sliderWidth
+
+    return {
+      width: `${trackWidth}px`,
+      transform: `translate3d(-${offset}px, 0px, 0px)`
+    }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+  showPrev() {
+    if (this.state.currentSlideIndex === 0) return
+
+    this.setState(previousState => ({
+      currentSlideIndex: previousState.currentSlideIndex - 1
+    }))
+  }
+
+  showNext() {
+    if (this.state.currentSlideIndex === this.props.items.length - 1) return
+
+    this.setState(previousState => ({
+      currentSlideIndex: previousState.currentSlideIndex + 1
+    }))
   }
 
   render() {
     const slides = this.props.items.map((item, index) => (
       <Slide
-        key={index}
+        key={item.id}
         title={item.title}
         src={item.src}
         width={this.state.sliderWidth}
@@ -80,14 +83,16 @@ class Slider extends React.Component {
         </div>
 
         <div className="controls">
-          <div
+          <button
+            type="button"
             id="btn-prev"
             className={`btn btn-prev ${this.state.currentSlideIndex === 0 ? 'inactive' : ''}`}
             onClick={this.showPrev}
           >
             <GrPrevious />
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             id="btn-next"
             className={`btn btn-next ${
               this.state.currentSlideIndex === this.props.items.length - 1 ? 'inactive' : ''
@@ -95,7 +100,7 @@ class Slider extends React.Component {
             onClick={this.showNext}
           >
             <GrNext />
-          </div>
+          </button>
         </div>
       </div>
     )
@@ -109,7 +114,13 @@ Slider.defaultProps = {
 
 Slider.propTypes = {
   title: PropTypes.string,
-  items: PropTypes.array
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      src: PropTypes.string,
+      title: PropTypes.string
+    })
+  )
 }
 
 export default Slider

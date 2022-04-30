@@ -41,10 +41,9 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      background-color: #fff;
 
-      &:hover,
-      &:active,
-      &:focus {
+      &:hover {
         background-color: #f3f3f3;
       }
 

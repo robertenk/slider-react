@@ -2,24 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class Slide extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   getBackgroundImage() {
+    const { src, width } = this.props
+
     return {
-      backgroundImage: `url(${this.props.src})`,
-      width: `${this.props.width}px`
+      backgroundImage: `url(${src})`,
+      width: `${width}px`
     }
   }
 
   render() {
+    const { isActive, title } = this.props
+
     return (
-      <div
-        className={`slide ${this.props.isActive ? 'is-active' : ''}`}
-        style={this.getBackgroundImage()}
-      >
-        <div className="image-title">{this.props.title}</div>
+      <div className={`slide ${isActive ? 'is-active' : ''}`} style={this.getBackgroundImage()}>
+        <div className="image-title">{title}</div>
       </div>
     )
   }
