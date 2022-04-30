@@ -15,7 +15,10 @@ class Slide extends React.Component {
 
   render() {
     return (
-      <div className="slide" style={this.getBackgroundImage()}>
+      <div
+        className={`slide ${this.props.isActive ? 'is-active' : ''}`}
+        style={this.getBackgroundImage()}
+      >
         <div className="image-title">{this.props.title}</div>
       </div>
     )
@@ -25,13 +28,15 @@ class Slide extends React.Component {
 Slide.defaultProps = {
   title: '',
   src: '',
-  width: 0
+  width: 0,
+  isActive: false
 }
 
 Slide.propTypes = {
   title: PropTypes.string,
   src: PropTypes.string,
-  width: PropTypes.number
+  width: PropTypes.number,
+  isActive: PropTypes.bool
 }
 
 export default Slide
