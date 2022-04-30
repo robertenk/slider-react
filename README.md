@@ -34,6 +34,13 @@ Manually create config files based on `.env.dist`:
 
 An env file for a specific mode (e.g. `.env.production`) will take higher priority than a generic one (e.g. `.env`).
 
+### Tests
+
+```bash
+# run unit tests
+yarn test
+```
+
 ### Linting/Formatting
 
 This project uses `ESLint` to **lint** the code (.js|.jsx) based on the `eslint-config-airbnb` rules and some additional _formatting_ rules which are defined in the `.prettierrc` config.
@@ -42,7 +49,7 @@ In order to automatically **format** the code (.js|.jsx|.css|...), it is recomme
 
 For now, ViteJS does not support ESLint 8.x (= no automatic linting when dev server is running).
 
-### To Do / Improvements
+### Ideas/Improvements
 
 Slider:  
 [ ] Refactor component  
@@ -53,6 +60,5 @@ Slider:
 [ ] Add autoplay option
 
 Project:  
-[ ] Write tests (unit & integration)  
-[ ] Configure build pipeline (GitHub Actions)  
+[ ] Configure build pipeline  
 [ ] Add missing favicon

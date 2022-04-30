@@ -81,12 +81,14 @@ class Slider extends React.Component {
 
         <div className="controls">
           <div
+            id="btn-prev"
             className={`btn btn-prev ${this.state.currentSlideIndex === 0 ? 'inactive' : ''}`}
             onClick={this.showPrev}
           >
             <GrPrevious />
           </div>
           <div
+            id="btn-next"
             className={`btn btn-next ${
               this.state.currentSlideIndex === this.props.items.length - 1 ? 'inactive' : ''
             }`}
